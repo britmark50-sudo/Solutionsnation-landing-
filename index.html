@@ -1,280 +1,1007 @@
+
 <!DOCTYPE html>
-<html lang="ar" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SolutionsNation | Premium Intellectual Property</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>Solutions Nation | استشارات وحلول أعمال</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
+        /* المتغيرات الأساسية (نظام الألوان) */
         :root {
-            --bg-dark: #070b14;
-            --bg-card: #111827;
-            --accent-gold: #d4af37;
-            --accent-gold-hover: #f1c40f;
-            --text-light: #ffffff;
-            --text-muted: #9ca3af;
-            --border-color: #1f2937;
+            --primary-blue: #0A192F; /* أزرق داكن */
+            --secondary-blue: #112240;
+            --accent-gold: #D4AF37; /* ذهبي */
+            --light-bg: #F8F9FA; /* أبيض/رمادي فاتح */
+            --white: #FFFFFF;
+            --text-dark: #333333;
+            --text-light: #8892B0;
+            --transition: all 0.3s ease;
         }
 
+        /* الإعدادات العامة */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Top Announcement Bar */
-        .top-bar {
-            background-color: #000;
-            color: var(--accent-gold);
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
             text-align: center;
-            padding: 8px;
-            font-size: 0.75rem;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        /* الأزرار */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 5px;
             font-weight: 600;
-            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
         }
 
-        /* Navbar */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 5%;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+        .btn-gold {
+            background-color: var(--accent-gold);
+            color: var(--white);
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-        }
-        
-        .logo span {
+        .btn-gold:hover {
+            background-color: transparent;
+            border-color: var(--accent-gold);
             color: var(--accent-gold);
         }
 
         .btn-outline {
-            background: transparent;
-            color: var(--accent-gold);
-            border: 1px solid var(--accent-gold);
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
+            background-color: transparent;
+            border-color: var(--white);
+            color: var(--white);
         }
 
         .btn-outline:hover {
-            background: var(--accent-gold);
-            color: #000;
+            background-color: var(--white);
+            color: var(--primary-blue);
         }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 80px 20px 40px;
-            max-width: 800px;
-            margin: 0 auto;
+        /* 1. الشريط العلوي (Navbar) */
+        header.navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            transition: var(--transition);
         }
 
-        .hero-subtitle {
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo h1 {
+            color: var(--primary-blue);
+            font-size: 1.8rem;
+        }
+
+        .logo span {
             color: var(--accent-gold);
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            display: block;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 20px;
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
         }
 
-        .hero p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 40px;
+        .nav-links li a {
+            color: var(--primary-blue);
+            font-weight: 500;
         }
 
-        .btn-primary {
-            background: var(--accent-gold);
-            color: #000;
-            border: none;
-            padding: 15px 35px;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: 800;
+        .nav-links li a:hover {
+            color: var(--accent-gold);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
             cursor: pointer;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-            transition: all 0.3s;
         }
 
-        .btn-primary:hover {
-            background: var(--accent-gold-hover);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
-            transform: translateY(-2px);
+        /* 2. قسم البطل (Hero Section) */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(10, 25, 47, 0.85), rgba(10, 25, 47, 0.85)), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+            padding-top: 80px;
         }
 
-        /* Features Section */
-        .features {
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: #d1d5db;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        /* 3. قسم من نحن (About Us) */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: var(--primary-blue);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .experience-card {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            background-color: var(--accent-gold);
+            color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .experience-card h3 {
+            font-size: 2rem;
+            margin-bottom: 5px;
+        }
+
+        /* 4. قسم الخدمات (Services) */
+        .services {
+            background-color: var(--white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: var(--light-bg);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: var(--transition);
+            border-bottom: 3px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: var(--accent-gold);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* 5. لماذا نحن (Why Choose Us) */
+        .why-us {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .why-us .section-title h2 {
+            color: var(--white);
+        }
+
+        .why-us-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            padding: 40px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .feature-card {
-            background-color: var(--bg-card);
-            padding: 40px 30px;
-            border-radius: 15px;
+            gap: 30px;
             text-align: center;
-            border: 1px solid var(--border-color);
-            transition: transform 0.3s;
         }
 
-        .feature-card:hover {
+        .why-card {
+            padding: 30px;
+            background-color: var(--secondary-blue);
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .why-card:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        .why-card i {
+            font-size: 2.5rem;
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        /* 6. المشاريع / العملاء (Portfolio) */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            height: 250px;
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(10, 25, 47, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: var(--white);
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        /* 7. المدونة (Blog) */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .blog-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+
+        .blog-card:hover {
             transform: translateY(-5px);
         }
 
-        .feature-icon {
-            font-size: 2rem;
-            margin-bottom: 20px;
+        .blog-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
         }
 
-        .feature-card h3 {
-            font-size: 1.2rem;
+        .blog-content {
+            padding: 20px;
+        }
+
+        .blog-date {
+            color: var(--accent-gold);
+            font-size: 0.85rem;
             margin-bottom: 10px;
+            display: block;
         }
 
-        .feature-card p {
-            color: var(--text-muted);
+        .blog-content h3 {
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+        }
+
+        .blog-btn {
+            color: var(--primary-blue);
+            font-weight: 600;
             font-size: 0.9rem;
         }
 
-        /* Form Section */
-        .inquiry-section {
-            padding: 60px 20px;
-            max-width: 800px;
-            margin: 40px auto;
+        .blog-btn i {
+            margin-right: 5px;
+            transition: var(--transition);
         }
 
-        .form-container {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 50px 40px;
-            text-align: center;
+        .blog-card:hover .blog-btn i {
+            transform: translateX(-5px);
         }
 
-        .form-container h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
+        /* 8. آراء العملاء (Testimonials) */
+        .testimonials {
+            background-color: var(--light-bg);
         }
 
-        .form-container p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 30px;
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
         }
 
-        form {
+        .testi-card {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .stars {
+            color: var(--accent-gold);
+            margin-bottom: 15px;
+        }
+
+        .testi-text {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .client-info {
             display: flex;
-            flex-direction: column;
+            align-items: center;
             gap: 15px;
         }
 
-        input, select {
-            width: 100%;
-            padding: 15px;
-            background-color: #070b14;
-            border: 1px solid var(--border-color);
-            color: white;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border 0.3s;
+        .client-info img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
         }
 
-        input:focus, select:focus {
+        .client-info h4 {
+            color: var(--primary-blue);
+            font-size: 1rem;
+        }
+
+        .client-info span {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        /* 9. النشرة البريدية (Newsletter) */
+        .newsletter {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            max-width: 600px;
+            margin: 30px auto 0;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            font-family: inherit;
+        }
+
+        /* 10. قسم الاتصال (Contact) */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(212, 175, 55, 0.1);
+            color: var(--accent-gold);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .contact-info-text h4 {
+            color: var(--primary-blue);
+            margin-bottom: 5px;
+        }
+
+        .contact-form form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .contact-form input:focus, .contact-form textarea:focus {
             border-color: var(--accent-gold);
         }
 
-        /* Mobile Adjustments */
+        /* 11. التذييل (Footer) */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--text-light);
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about h2 {
+            color: var(--white);
+            margin-bottom: 15px;
+        }
+
+        .footer-about span {
+            color: var(--accent-gold);
+        }
+
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--accent-gold);
+            padding-right: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-blue);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--accent-gold);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* استجابة الشاشات (Responsive) */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .features { grid-template-columns: 1fr; }
-            .form-container { padding: 30px 20px; }
+            .nav-links {
+                display: none; /* إخفاء القائمة في الموبايل */
+                flex-direction: column;
+                position: absolute;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--white);
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+                padding: 20px;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .about-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .newsletter-form {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        💎 ELITE ASSET VALUATION: $25,999 USD | SECURE TRANSFER VIA GODADDY ESCROW
-    </div>
-
-    <header>
-        <div class="logo">Solutions<span>Nation</span></div>
-        <button class="btn-outline">ACQUIRE IDENTITY</button>
+    <header class="navbar" id="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="#"><h1>Solutions <span>Nation</span></h1></a>
+            </div>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#hero">الرئيسية</a></li>
+                <li><a href="#about">من نحن</a></li>
+                <li><a href="#services">الخدمات</a></li>
+                <li><a href="#portfolio">المشاريع</a></li>
+                <li><a href="#blog">المدونة</a></li>
+                <li><a href="#contact">اتصل بنا</a></li>
+                <li><a href="#contact" class="btn btn-gold">احصل على استشارة</a></li>
+            </ul>
+            <div class="menu-toggle" id="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
     </header>
 
-    <section class="hero">
-        <span class="hero-subtitle">PREMIUM INTELLECTUAL PROPERTY</span>
-        <h1>The Benchmark of<br>Global Authority.</h1>
-        <p>Owning <strong>SolutionsNation.com</strong> is a strategic move for multi-national corporations. Secure the most brandable name in the solutions industry.</p>
-        <button class="btn-primary">INSTANT ACQUISITION: $25,999</button>
-    </section>
-
-    <section class="features">
-        <div class="feature-card">
-            <div class="feature-icon">💎</div>
-            <h3>Scarcity Value</h3>
-            <p>A dictionary-perfect "Solutions" TLD is a non-renewable resource in the digital economy.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">🛡️</div>
-            <h3>Instant Trust</h3>
-            <p>Command immediate respect from Fortune 500 clients with a name that defines an industry.</p>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon">📈</div>
-            <h3>SEO Dominance</h3>
-            <p>Built-in keyword authority for "Solutions" and "Nation" drives organic enterprise traffic.</p>
+    <section class="hero" id="hero">
+        <div class="container" data-aos="fade-up">
+            <div class="hero-content">
+                <h1>حلول مبتكرة لأعمال أكثر ذكاءً</h1>
+                <p>نحن في Solutions Nation نقدم استشارات استراتيجية وحلولاً متكاملة لدفع عجلة نمو شركتك نحو القمة في العصر الرقمي.</p>
+                <div class="hero-btns">
+                    <a href="#services" class="btn btn-gold">اكتشف خدماتنا</a>
+                    <a href="#contact" class="btn btn-outline">تواصل معنا</a>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="inquiry-section">
-        <div class="form-container">
-            <h2>Corporate Inquiry</h2>
-            <p>For acquisition details, lease-to-own options, or partnership proposals, please submit a formal request.</p>
-            
-            <form action="#" method="POST" onsubmit="event.preventDefault(); alert('تم إرسال طلبك بنجاح! سنتواصل معك قريباً.');">
-                <input type="text" placeholder="Executive Name / Corporation" required>
-                <input type="email" placeholder="Corporate Email Address" required>
-                
-                <select required>
-                    <option value="" disabled selected>Select Inquiry Type...</option>
-                    <option value="outright">Outright Acquisition ($25,999)</option>
-                    <option value="offer">Submit a Counter-Offer</option>
-                    <option value="lease">Lease-to-Own Options</option>
-                    <option value="partnership">Strategic Partnership</option>
-                </select>
-                
-                <button type="submit" class="btn-primary" style="margin-top: 10px; width: 100%;">SUBMIT INQUIRY</button>
+    <section class="about" id="about">
+        <div class="container about-grid">
+            <div class="about-text" data-aos="fade-left">
+                <h2>نبذة عن Solutions Nation</h2>
+                <p>نحن شركة استشارات وحلول أعمال رائدة، نهدف إلى تمكين الشركات الناشئة والمؤسسات الكبرى من تحقيق أهدافها من خلال استراتيجيات قائمة على البيانات والابتكار.</p>
+                <p>فريقنا يتكون من خبراء متخصصين في الإدارة، التكنولوجيا، والتسويق، يعملون بشغف لتقديم قيمة حقيقية ونتائج قابلة للقياس لعملائنا.</p>
+                <a href="#contact" class="btn btn-gold">تعرف علينا أكثر</a>
+            </div>
+            <div class="about-image" data-aos="fade-right">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="فريق العمل">
+                <div class="experience-card">
+                    <h3>10+</h3>
+                    <p>سنوات من الخبرة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>خدماتنا المتكاملة</h2>
+                <p>نقدم مجموعة واسعة من الحلول المصممة خصيصاً لتلبية احتياجات عملك وتجاوز التحديات.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-chart-line service-icon"></i>
+                    <h3>الاستشارات الإدارية</h3>
+                    <p>نساعدك في بناء هياكل تنظيمية فعالة وتطوير استراتيجيات نمو مستدامة لشركتك.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-laptop-code service-icon"></i>
+                    <h3>التحول الرقمي</h3>
+                    <p>نقل أعمالك إلى البيئة الرقمية بأحدث التقنيات لزيادة الكفاءة وتقليل التكاليف.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-database service-icon"></i>
+                    <h3>تحليل البيانات</h3>
+                    <p>استخراج رؤى قيمة من بياناتك لاتخاذ قرارات دقيقة ومبنية على أسس علمية.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-cogs service-icon"></i>
+                    <h3>تحسين العمليات</h3>
+                    <p>إعادة هندسة العمليات التشغيلية لضمان أقصى درجات الجودة والسرعة في الأداء.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fas fa-rocket service-icon"></i>
+                    <h3>دعم ريادة الأعمال</h3>
+                    <p>توجيه شامل للشركات الناشئة من الفكرة إلى التنفيذ وجذب الاستثمارات.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="600">
+                    <i class="fas fa-bullhorn service-icon"></i>
+                    <h3>حلول التسويق</h3>
+                    <p>حملات تسويقية مبتكرة تضمن وصول علامتك التجارية للجمهور المستهدف بدقة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="why-us" id="why-us">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>لماذا تختارنا؟</h2>
+                <p>نحن لا نقدم مجرد نصائح، بل نبني شراكات نجاح حقيقية مع عملائنا.</p>
+            </div>
+            <div class="why-us-grid">
+                <div class="why-card" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fas fa-award"></i>
+                    <h3>خبرة 10+ سنوات</h3>
+                    <p>تاريخ طويل من النجاحات في السوق المحلي والعالمي.</p>
+                </div>
+                <div class="why-card" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fas fa-users"></i>
+                    <h3>فريق محترف</h3>
+                    <p>نخبة من الخبراء والمستشارين في مختلف القطاعات.</p>
+                </div>
+                <div class="why-card" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fas fa-headset"></i>
+                    <h3>دعم 24/7</h3>
+                    <p>نحن دائماً هنا للرد على استفساراتك ودعم أعمالك بانتظام.</p>
+                </div>
+                <div class="why-card" data-aos="zoom-in" data-aos-delay="400">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>نتائج مضمونة</h3>
+                    <p>نلتزم بتحقيق مؤشرات أداء (KPIs) واضحة وقابلة للقياس.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>أحدث مشاريعنا</h2>
+                <p>نظرة سريعة على بعض قصص النجاح التي سطرناها مع شركائنا.</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=500&q=80" alt="مشروع 1">
+                    <div class="portfolio-overlay">
+                        <h3>تحليل بيانات تجارية</h3>
+                        <p>قطاع التجزئة</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=500&q=80" alt="مشروع 2">
+                    <div class="portfolio-overlay">
+                        <h3>استراتيجية نمو</h3>
+                        <p>شركة ناشئة تقنية</p>
+                    </div>
+                </div>
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=500&q=80" alt="مشروع 3">
+                    <div class="portfolio-overlay">
+                        <h3>تحسين العمليات</h3>
+                        <p>قطاع الصناعة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog" id="blog" style="background-color: var(--white);">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>أحدث المقالات</h2>
+                <p>ابقَ على اطلاع دائم بأحدث توجهات السوق وعالم الأعمال.</p>
+            </div>
+            <div class="blog-grid">
+                <div class="blog-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=500&q=80" alt="مقال 1" class="blog-img">
+                    <div class="blog-content">
+                        <span class="blog-date">15 أكتوبر 2023</span>
+                        <h3>أهمية التحول الرقمي في 2024</h3>
+                        <p>كيف يمكن للشركات الاستفادة من التكنولوجيا للبقاء في المنافسة.</p>
+                        <a href="#" class="blog-btn">قراءة المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=500&q=80" alt="مقال 2" class="blog-img">
+                    <div class="blog-content">
+                        <span class="blog-date">02 نوفمبر 2023</span>
+                        <h3>إدارة الأزمات المالية</h3>
+                        <p>خطوات عملية لحماية سيولة شركتك خلال التقلبات الاقتصادية.</p>
+                        <a href="#" class="blog-btn">قراءة المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32d7?auto=format&fit=crop&w=500&q=80" alt="مقال 3" class="blog-img">
+                    <div class="blog-content">
+                        <span class="blog-date">20 نوفمبر 2023</span>
+                        <h3>بناء هوية العلامة التجارية</h3>
+                        <p>دليل شامل لبناء ثقة طويلة الأمد مع عملائك المستهدفين.</p>
+                        <a href="#" class="blog-btn">قراءة المزيد <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>ماذا يقول عملاؤنا</h2>
+            </div>
+            <div class="testi-grid">
+                <div class="testi-card" data-aos="fade-left">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testi-text">"ساعدتنا Solutions Nation في إعادة هيكلة إداراتنا بالكامل، مما أدى إلى زيادة الإنتاجية بنسبة 40% في أقل من 6 أشهر. فريق محترف بحق!"</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="العميل 1">
+                        <div>
+                            <h4>أحمد الراجحي</h4>
+                            <span>المدير التنفيذي، شركة ألفا</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testi-card" data-aos="fade-right">
+                    <div class="stars">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p class="testi-text">"استشاراتهم في التحول الرقمي كانت نقطة تحول لشركتنا. التطبيق كان سلساً والعائد على الاستثمار كان أسرع مما توقعنا."</p>
+                    <div class="client-info">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="العميل 2">
+                        <div>
+                            <h4>سارة محمود</h4>
+                            <span>مؤسسة، TechVision</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="newsletter" id="newsletter">
+        <div class="container" data-aos="zoom-in">
+            <h2>اشترك في نشرتنا البريدية</h2>
+            <p>احصل على أحدث النصائح والاستراتيجيات الإدارية مباشرة في بريدك.</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="أدخل بريدك الإلكتروني هنا..." required>
+                <button type="submit" class="btn btn-gold">اشتراك</button>
             </form>
         </div>
     </section>
 
+    <section class="contact" id="contact" style="background-color: var(--white);">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>دعنا نتحدث عن مشروعك</h2>
+                <p>نحن هنا للاستماع إليك وتقديم الحلول الأنسب لأعمالك.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info" data-aos="fade-left">
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-info-text">
+                            <h4>موقعنا</h4>
+                            <p>شارع الأعمال، برج الابتكار، الطابق 10<br>الرياض، المملكة العربية السعودية</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="contact-info-text">
+                            <h4>اتصل بنا</h4>
+                            <p>+966 12 345 6789<br>+966 98 765 4321</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-info-text">
+                            <h4>البريد الإلكتروني</h4>
+                            <p>info@solutionsnation.com<br>support@solutionsnation.com</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form" data-aos="fade-right">
+                    <form action="#">
+                        <input type="text" placeholder="الاسم الكامل" required>
+                        <input type="email" placeholder="البريد الإلكتروني" required>
+                        <input type="text" placeholder="موضوع الرسالة">
+                        <textarea rows="5" placeholder="اكتب رسالتتك هنا..." required></textarea>
+                        <button type="submit" class="btn btn-gold">إرسال الرسالة</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h2>Solutions <span>Nation</span></h2>
+                    <p>شريكك الاستراتيجي للنمو والابتكار. نقدم حلولاً ذكية تضمن استدامة أعمالك في الأسواق المتغيرة.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>روابط سريعة</h4>
+                    <ul>
+                        <li><a href="#about">عن الشركة</a></li>
+                        <li><a href="#services">خدماتنا</a></li>
+                        <li><a href="#portfolio">المشاريع</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>الخدمات</h4>
+                    <ul>
+                        <li><a href="#">الاستشارات الإدارية</a></li>
+                        <li><a href="#">التحول الرقمي</a></li>
+                        <li><a href="#">تحليل البيانات</a></li>
+                        <li><a href="#">ريادة الأعمال</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Solutions Nation. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script>
+        // تفعيل مكتبة الحركات AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true, // تشغيل الحركة مرة واحدة فقط عند التمرير
+            offset: 100
+        });
+
+        // قائمة الموبايل (Mobile Menu Toggle)
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('nav-links');
+
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // تأثير الظل للشريط العلوي عند التمرير
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 5px 15px rgba(0,0,0,0.1)';
+                navbar.style.padding = '5px 0';
+            } else {
+                navbar.style.boxShadow = 'none';
+                navbar.style.padding = '0';
+            }
+        });
+
+        // إغلاق قائمة الموبايل عند الضغط على أي رابط
+        document.querySelectorAll('.nav-links li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+    </script>
 </body>
 </html>
